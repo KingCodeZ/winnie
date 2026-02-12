@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>From David💙</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&family=Caveat:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap');
+
+        :root {
+            --cream: #F5EFE6;
+            --warm-white: #FFFCF7;
+            --soft-blue: #A8C5DA;
+            --blush-pink: #FFCCD2;
+            --peach: #FFB5A7;
+            --coral: #FF9B85;
+            --mint: #B8E0D4;
+            --lavender: #D4C5E2;
+            --text-dark: #5A4A42;
+            --text-medium: #8B7A6F;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--cream);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow-x: hidden;
+            position: relative;
+            padding: 40px 20px;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                radial-gradient(circle at 15% 20%, rgba(168, 197, 218, 0.06) 0%, transparent 40%),
+                radial-gradient(circle at 85% 80%, rgba(255, 204, 210, 0.06) 0%, transparent 40%),
+                radial-gradient(circle at 50% 50%, rgba(184, 224, 212, 0.04) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* Hand-drawn hearts instead of petals */
+        .petal {
+            position: fixed;
+            top: -30px;
+            font-size: 20px;
+            opacity: 0.6;
+            animation: fall linear infinite;
+            z-index: 2;
+            color: #8B5A5A;
+        }
+
+        .petal::before {
+            content: '♥';
+            display: block;
+            transform: rotate(var(--rotate, 0deg));
+        }
+
+        .petal:nth-child(odd) {
+            color: #B8858A;
+        }
+
+        .petal:nth-child(3n) {
+            color: #A67B8F;
+            font-size: 16px;
+        }
+
+        .petal:nth-child(4n) {
+            color: #9B8A9E;
+            font-size: 24px;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0.6;
+            }
+            50% {
+                opacity: 0.4;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Decorative flowers */
+        .flower-decor {
+            position: absolute;
+            font-size: 3em;
+            opacity: 0.15;
+            z-index: 5;
+            pointer-events: none;
+        }
+
+        .flower-top-left {
+            top: 20px;
+            left: 20px;
+        }
+
+        .flower-top-right {
+            top: 30px;
+            right: 30px;
+            transform: rotate(25deg);
+        }
+
+        .flower-bottom-left {
+            bottom: 30px;
+            left: 35px;
+            transform: rotate(-15deg);
+        }
+
+        .flower-bottom-right {
+            bottom: 20px;
+            right: 25px;
+            transform: rotate(20deg);
+        }
+
+        .container {
+            background: var(--warm-white);
+            border-radius: 24px;
+            padding: 50px 45px;
+            max-width: 580px;
+            width: 90%;
+            box-shadow: 
+                0 2px 8px rgba(90, 74, 66, 0.08),
+                0 8px 24px rgba(90, 74, 66, 0.12);
+            position: relative;
+            z-index: 10;
+            border: 3px solid rgba(255, 204, 210, 0.3);
+        }
+
+        h1 {
+            font-family: 'Caveat', cursive;
+            color: var(--text-dark);
+            text-align: center;
+            margin-bottom: 35px;
+            font-size: 2.4em;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .tulip-header {
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 25px;
+            opacity: 0.8;
+            letter-spacing: 12px;
+        }
+
+        .question {
+            margin-bottom: 35px;
+            display: none;
+        }
+
+        .question.active {
+            display: block;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { 
+                opacity: 0; 
+                transform: translateY(15px); 
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0); 
+            }
+        }
+
+        .question h2 {
+            font-family: 'Quicksand', sans-serif;
+            color: var(--text-dark);
+            margin-bottom: 25px;
+            font-size: 1.35em;
+            font-weight: 600;
+            line-height: 1.5;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .option {
+            background: linear-gradient(135deg, rgba(255, 204, 210, 0.3) 0%, rgba(168, 197, 218, 0.25) 100%);
+            color: var(--text-dark);
+            border: 2px solid rgba(255, 181, 167, 0.4);
+            padding: 18px 26px;
+            border-radius: 16px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            text-align: left;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .option:hover {
+            background: linear-gradient(135deg, var(--peach) 0%, var(--coral) 100%);
+            color: white;
+            border-color: var(--coral);
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 6px 20px rgba(255, 155, 133, 0.3);
+        }
+
+        .input-option {
+            width: 100%;
+            padding: 18px 24px;
+            border: 2.5px solid rgba(255, 181, 167, 0.4);
+            border-radius: 16px;
+            font-size: 1em;
+            margin-bottom: 18px;
+            font-family: 'Poppins', sans-serif;
+            background: rgba(255, 252, 247, 0.8);
+            transition: all 0.3s ease;
+        }
+
+        .input-option:focus {
+            outline: none;
+            border-color: var(--coral);
+            background: white;
+            box-shadow: 0 0 0 4px rgba(255, 155, 133, 0.1);
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, var(--peach) 0%, var(--coral) 100%);
+            color: white;
+            border: none;
+            padding: 16px 44px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 0.95em;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            display: block;
+            margin: 30px auto;
+            font-family: 'Quicksand', sans-serif;
+            box-shadow: 0 4px 15px rgba(255, 155, 133, 0.3);
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 25px rgba(255, 155, 133, 0.4);
+        }
+
+        .result {
+            display: none;
+            text-align: center;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        .result.active {
+            display: block;
+        }
+
+        .result h2 {
+            font-family: 'Caveat', cursive;
+            color: var(--text-dark);
+            font-size: 2.2em;
+            font-weight: 600;
+            margin-bottom: 22px;
+        }
+
+        .result p {
+            font-size: 1.08em;
+            color: var(--text-dark);
+            margin-bottom: 26px;
+            line-height: 1.7;
+            font-weight: 400;
+        }
+
+        .letter {
+            background: var(--warm-white);
+            padding: 45px 38px;
+            border-radius: 20px;
+            box-shadow: 0 3px 12px rgba(90, 74, 66, 0.1);
+            text-align: left;
+            margin-top: 35px;
+            border: 2.5px solid rgba(255, 204, 210, 0.3);
+            position: relative;
+        }
+
+        .letter::before {
+            content: '✿';
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            font-size: 1.5em;
+            opacity: 0.2;
+            color: var(--peach);
+        }
+
+        .letter::after {
+            content: '✿';
+            position: absolute;
+            bottom: 15px;
+            right: 15px;
+            font-size: 1.5em;
+            opacity: 0.2;
+            color: var(--soft-blue);
+        }
+
+        .letter p {
+            font-size: 1.04em;
+            line-height: 1.85;
+            color: var(--text-dark);
+            margin-bottom: 20px;
+            font-weight: 400;
+        }
+
+        .signature {
+            text-align: right;
+            font-family: 'Caveat', cursive;
+            font-style: normal;
+            margin-top: 35px;
+            color: var(--text-dark);
+            font-size: 1.3em;
+            font-weight: 600;
+        }
+
+        .progress {
+            text-align: center;
+            color: var(--text-medium);
+            margin-bottom: 28px;
+            font-size: 0.88em;
+            letter-spacing: 0.5px;
+            font-weight: 500;
+        }
+
+        .hearts {
+            text-align: center;
+            font-size: 1.8em;
+            margin: 28px 0;
+            opacity: 0.6;
+            letter-spacing: 8px;
+        }
+
+        /* Popup Modal Styles */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: var(--warm-white);
+            border-radius: 24px;
+            padding: 40px;
+            max-width: 450px;
+            width: 85%;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            border: 3px solid rgba(255, 204, 210, 0.4);
+            position: relative;
+            animation: scaleIn 0.3s ease-out;
+        }
+
+        @keyframes scaleIn {
+            from {
+                transform: scale(0.9);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .modal-content h3 {
+            font-family: 'Caveat', cursive;
+            font-size: 2em;
+            color: var(--text-dark);
+            margin-bottom: 20px;
+        }
+
+        .modal-content p {
+            font-size: 1.1em;
+            color: var(--text-dark);
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+
+        .modal-image {
+            width: 200px;
+            height: 200px;
+            margin: 20px auto;
+            border-radius: 16px;
+            object-fit: cover;
+            border: 2px solid rgba(255, 181, 167, 0.3);
+        }
+
+        .modal-close-btn {
+            background: linear-gradient(135deg, var(--peach) 0%, var(--coral) 100%);
+            color: white;
+            border: none;
+            padding: 12px 36px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 0.95em;
+            font-weight: 600;
+            font-family: 'Quicksand', sans-serif;
+            box-shadow: 0 4px 15px rgba(255, 155, 133, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .modal-close-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 155, 133, 0.4);
+        }
+
+        .letter-page {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--cream);
+            z-index: 2000;
+            overflow-y: auto;
+            padding: 40px 20px;
+        }
+
+        .letter-page.active {
+            display: block;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        .letter-container {
+            max-width: 700px;
+            margin: 0 auto;
+            background: var(--warm-white);
+            border-radius: 24px;
+            padding: 60px 50px;
+            box-shadow: 0 8px 32px rgba(90, 74, 66, 0.15);
+            border: 3px solid rgba(255, 204, 210, 0.3);
+        }
+
+        @media (max-width: 640px) {
+            .container {
+                padding: 40px 30px;
+            }
+            
+            h1 {
+                font-size: 2em;
+            }
+            
+            .question h2 {
+                font-size: 1.2em;
+            }
+            
+            .letter {
+                padding: 35px 25px;
+            }
+
+            .flower-decor {
+                font-size: 2em;
+            }
+
+            .modal-content {
+                padding: 30px 25px;
+            }
+
+            .modal-image {
+                width: 150px;
+                height: 150px;
+            }
+
+            .letter-container {
+                padding: 40px 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <span class="flower-decor flower-top-left">🌸</span>
+        <span class="flower-decor flower-top-right">🌺</span>
+        <span class="flower-decor flower-bottom-left">🌼</span>
+        <span class="flower-decor flower-bottom-right">🌻</span>
+        
+        <div class="tulip-header">🌷</div>
+        <h1>You Probably like quizzes so..</h1>
+        
+        <div class="progress" id="progress">Question 1 of 8</div>
+
+        <!-- Question 1 -->
+        <div class="question active" data-question="1">
+            <h2>What do you think was the first thing i liked about you?</h2>
+            <div class="options">
+                <button class="option" data-answer="wrong">A) Thighs</button>
+                <button class="option" data-answer="wrong">B) Vibe</button>
+                <button class="option" data-answer="correct">C) Voice</button>
+                <button class="option" data-answer="wrong">D) Beauty</button>
+            </div>
+        </div>
+
+        <!-- Question 2 -->
+        <div class="question" data-question="2">
+            <h2>What app did we meet on?</h2>
+             <div class="options">
+                <button class="option" data-answer="wrong">A) WhatsApp</button>
+                <button class="option" data-answer="wrong">B) Instagram</button>
+                <button class="option" data-answer="correct">C) Snapchat</button>
+                <button class="option" data-answer="wrong">D) I don't know bruh😂</button>
+            </div>
+        </div>
+
+        <!-- Question 3 -->
+        <div class="question" data-question="3">
+            <h2>Who said "I love you" first?</h2>
+            <div class="options">
+                <button class="option" data-answer="wrong">A) You (Winnie)</button>
+                <button class="option" data-answer="correct">B) Me (David)</button>
+                <button class="option" data-answer="wrong">C) Both of us</button>
+            </div>
+        </div>
+
+        <!-- Question 4 -->
+        <div class="question" data-question="4">
+            <h2>Complete this: "I've never done this before, What if I don't do it _____"</h2>
+            <div class="options">
+                <button class="option" data-answer="correct">A) Right</button>
+                <button class="option" data-answer="wrong">B) Well</button>
+                <button class="option" data-answer="wrong">C) Good</button>
+            </div>
+        </div>
+
+        <!-- Question 5 -->
+        <div class="question" data-question="5">
+            <h2>What's my current pin? (hint: 6 digits)</h2>
+            <input type="text" class="input-option" id="q5-input" placeholder="Enter 6 digits...">
+            <button class="submit-btn" onclick="checkTextAnswer(5, '260609')">Submit Answer</button>
+        </div>
+
+        <!-- Question 6 -->
+        <div class="question" data-question="6">
+            <h2>Complete this: "My princess __________"</h2>
+            <div class="options">
+                <button class="option" data-answer="wrong">A) Stainless</button>
+                <button class="option" data-answer="wrong">B) Stainless steel</button>
+                <button class="option" data-answer="correct">C) Stainless steel of Agbura</button>
+            </div>
+        </div>
+
+        <!-- Question 7 -->
+        <div class="question" data-question="7">
+            <h2>Do you love me? 💙</h2>
+            <div class="options">
+                <button class="option" data-answer="correct" onclick="showLovePopup(true, event)">A) Yes</button>
+                <button class="option" data-answer="wrong" onclick="showLovePopup(false, event)">B) No</button>
+            </div>
+        </div>
+
+        <!-- Question 8 -->
+        <div class="question" data-question="8">
+            <h2>Will you be my Valentine? 🌷</h2>
+            <div class="options">
+                <button class="option" data-answer="correct">A) Yes!</button>
+                <button class="option" data-answer="wrong">B) nah, i'm good</button>
+                <button class="option" data-answer="correct">C) Absolutely♥️</button>
+            </div>
+        </div>
+
+        <!-- Results -->
+        <div class="result" id="result"></div>
+    </div>
+
+    <!-- Love Popup Modal -->
+    <div class="modal-overlay" id="loveModal">
+        <div class="modal-content">
+            <h3 id="modalTitle"></h3>
+            <img id="modalImage" class="modal-image" style="width: 100px; height: 100px;" src="" alt="">
+            <p id="modalMessage"></p>
+            <button class="modal-close-btn" onclick="closeLoveModal()">Continue</button>
+        </div>
+    </div>
+
+    <!-- Letter Page -->
+    <div class="letter-page" id="letterPage">
+        <div class="letter-container">
+            <span class="flower-decor flower-top-left">🌸</span>
+            <span class="flower-decor flower-top-right">🌺</span>
+            <span class="flower-decor flower-bottom-left">🌼</span>
+            <span class="flower-decor flower-bottom-right">🌻</span>
+            
+            <div class="hearts">🌷</div>
+            <h2 style="font-family: 'Caveat', cursive; color: var(--text-dark); font-size: 2.5em; text-align: center; margin-bottom: 30px;">My Dearest Princess,</h2>
+            <div class="letter">
+               <p>
+                So yeah Winnie, i hope you read this in my voice 
+
+I had planned to write some generic love ass poem but nahhhh
+The way we started up is crazy, t’was definitely fate.
+I still remember it all, shoutout to Melody for the indirect assist i guess.
+I really can’t classify those things i’ve had in the past with what we have rn.
+There’s just something about you–I really can’t explain.
+The beginning days were cute, never would either of us have thought that this was how it’ll turn out, Mehn my writing is your organized 
+
+Miss Vampire, I’m seriously confused on how to write this, a part of me wants something really cute and poetic, one part wants to write like this another wants to literally write everything that has happened.
+
+We’ve really come far mehn, thanks to you though😅.
+You’ve been an amazing human to me because this surpasses the usual romantic partner shi. My pretty petite light skinned girlfriend. I love you so much 
+Thank you for choosing me over and over again, Thank you for the multiple chances😭🙏🏾, This has to be God’s work, this is gon’ sound cheeky but i be looking up to our marriage.
+
+I know I’ve been a douche bag, I haven’t been the best lad out there but fr Winnie, You’re for sure amongst the best things that have ever happened to me. Every single experience with you has been memorable, pretty sad that all my good character development had to be at the expense of you but it just shows how much impact you’ve had in me.
+
+This has to be the most any individual other than my family has ever done.
+You literally just told me to leave your spotify acct🌚, I really love sharing this acct with you. I smile anytime I remember how you occasionally paused songs whenever i was listening, you’re so cute Winnie.
+Even that game, I actually liked it. 
+I might be the clingy one🫠
+
+Back to business, yeah
+I could say I love everything about you but you already know that, If you don’t, I love everything bout you Winnie.
+Wrapping up…
+Rowland Ayebapreye Winnie, Thank you.
+You sef don really see shege for my side, I’m sorry about that.
+I thank you Winnie for choosing me, really is an honour😭
+Yup, so yeah 
+This is practically like 2 years of dating 🫠
+
+Remember that day, i was shy af when i saw you, i turned numb. I still remember that kiss. All that was missing that day were moonlight and stars cause I already had God’s Perfect being in my arms
+
+Imma stick to keeping it simple, dunno if you would have preferred otherwise 
+Henceforth i shall prove it and say it too.
+You’ve done your fair part, it is my turn
+
+My pretty light skinned babe
+I love you my princess❤️
+
+
+Thank you (idek feel like re-writing)
+
+               </p>
+                <div class="signature">
+                    Forever yours,<br>
+                   Your 6"10 Husband💙
+                </div>
+            </div>
+            <div class="hearts" style="margin-top: 30px;"></div>
+        </div>
+    </div>
+
+    <script>
+        let currentQuestion = 1;
+        let score = 0;
+        const totalQuestions = 8;
+        let lovePopupAnswered = false;
+
+        // Create falling hearts
+        function createPetals() {
+            for (let i = 0; i < 25; i++) {
+                const petal = document.createElement('div');
+                petal.className = 'petal';
+                petal.style.left = Math.random() * 100 + '%';
+                petal.style.setProperty('--rotate', Math.random() * 360 + 'deg');
+                petal.style.animationDuration = (Math.random() * 4 + 6) + 's';
+                petal.style.animationDelay = Math.random() * 5 + 's';
+                document.body.appendChild(petal);
+            }
+        }
+
+        createPetals();
+
+        // Show love popup
+        function showLovePopup(isYes, event) {
+            event.preventDefault();
+            event.stopPropagation();
+            
+            const modal = document.getElementById('loveModal');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalMessage = document.getElementById('modalMessage');
+            const modalImage = document.getElementById('modalImage');
+            
+            if (isYes) {
+                modalTitle.textContent = "Awwn! 💕";
+                modalMessage.textContent = "I love you too, my princess💙";
+                
+                modalImage.src = "happychi.gif";
+                score++; // Correct answer
+            } else {
+                modalTitle.textContent = "Ehhh! 😮";
+                modalMessage.textContent = "No be so oo! You sure say you no love me? 🥺";
+                // Sad/pleading image - using a placeholder SVG
+                modalImage.src = "sadchi.gif";
+                // Don't increment score for wrong answer
+            }
+            
+            modal.classList.add('active');
+            lovePopupAnswered = true;
+        }
+
+        // Close love modal and continue
+        function closeLoveModal() {
+            const modal = document.getElementById('loveModal');
+            modal.classList.remove('active');
+            if (lovePopupAnswered) {
+                nextQuestion();
+                lovePopupAnswered = false;
+            }
+        }
+
+        // Handle multiple choice questions
+        document.querySelectorAll('.option').forEach(option => {
+            option.addEventListener('click', function(e) {
+                // Skip if this is the love question (it has onclick handler)
+                if (this.hasAttribute('onclick')) {
+                    return;
+                }
+                
+                const isCorrect = this.dataset.answer === 'correct';
+                if (isCorrect) score++;
+                nextQuestion();
+            });
+        });
+
+        function checkTextAnswer(questionNum, correctAnswer) {
+            const input = document.getElementById(`q${questionNum}-input`);
+            const userAnswer = input.value.trim().toLowerCase();
+            const correct = correctAnswer.toLowerCase();
+            
+            if (userAnswer === correct) {
+                score++;
+            }
+            nextQuestion();
+        }
+
+        function nextQuestion() {
+            const questions = document.querySelectorAll('.question');
+            questions[currentQuestion - 1].classList.remove('active');
+            
+            currentQuestion++;
+            
+            if (currentQuestion <= totalQuestions) {
+                questions[currentQuestion - 1].classList.add('active');
+                document.getElementById('progress').textContent = `Question ${currentQuestion} of ${totalQuestions}`;
+            } else {
+                showResult();
+            }
+        }
+
+       
+        function showResult() {
+            document.getElementById('progress').style.display = 'none';
+            const resultDiv = document.getElementById('result');
+            resultDiv.classList.add('active');
+
+            if (score < 6) {
+                // Less than 6 correct
+                resultDiv.innerHTML = `
+                    <div class="hearts">💔</div>
+                    <h2>Madam Howfa, abeg answer like my babe</h2>
+                    <p>You got ${score} out of ${totalQuestions} questions right...</p>
+                    <p style="font-size: 1.5em; color: var(--text-dark); margin-top: 20px;">Do you hate me? 😔</p>
+                    <p style="font-size: 0.9em; color: var(--text-medium); margin-top: 20px;">Maybe try again? </p>
+                `;
+            } else if (score === 8) {
+                // Perfect score
+                resultDiv.innerHTML = `
+                    <div class="hearts">♥️</div>
+                    <h2>PERFECT SCORE! 🎉</h2>
+                    <p>You got all ${totalQuestions} questions right! Shw knows me all too well guyss</p>
+                    <button class="submit-btn" onclick="showLetter()">I wrote you something....</button>
+                `;
+            } else {
+                // 6 or 7 correct
+                resultDiv.innerHTML = `
+                    
+                    <h2>Not Bad, Not Bad At All! 😏</h2>
+                    <p>You got ${score} out of ${totalQuestions} right... I see...</p>
+                    <button class="submit-btn" onclick="showLetter()">I wrote you something....</button>
+                `;
+            }
+        }
+
+        function showLetter() {
+            const letterPage = document.getElementById('letterPage');
+            letterPage.classList.add('active');
+            window.scrollTo(0, 0);
+        }
+    </script>
+</body>
+</html>
