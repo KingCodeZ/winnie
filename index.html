@@ -53,6 +53,67 @@
             z-index: 1;
         }
 
+        /* Music Player Button */
+        .music-player {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: linear-gradient(135deg, var(--peach) 0%, var(--coral) 100%);
+            border: none;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 20px rgba(255, 155, 133, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .music-player:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 25px rgba(255, 155, 133, 0.5);
+        }
+
+        .music-player.playing {
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                box-shadow: 0 4px 20px rgba(255, 155, 133, 0.4);
+            }
+            50% {
+                box-shadow: 0 6px 30px rgba(255, 155, 133, 0.6);
+            }
+        }
+
+        .music-icon {
+            font-size: 24px;
+            color: white;
+        }
+
+        .music-tooltip {
+            position: absolute;
+            bottom: -35px;
+            right: 0;
+            background: var(--text-dark);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-size: 0.75em;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .music-player:hover .music-tooltip {
+            opacity: 1;
+        }
+
         /* Hand-drawn hearts instead of petals */
         .petal {
             position: fixed;
@@ -499,10 +560,33 @@
             .letter-container {
                 padding: 40px 30px;
             }
+
+            .music-player {
+                width: 50px;
+                height: 50px;
+                top: 15px;
+                right: 15px;
+            }
+
+            .music-icon {
+                font-size: 20px;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Music Player Button -->
+    <button class="music-player" id="musicPlayer" onclick="toggleMusic()">
+        <span class="music-icon" id="musicIcon">🎵</span>
+        <span class="music-tooltip" id="musicTooltip">Play Music</span>
+    </button>
+
+   
+    <audio id="backgroundMusic" loop>
+       
+        <source src="./sampha.mp3" type="audio/mpeg">
+    </audio>
+
     <div class="container">
         <span class="flower-decor flower-top-left">🌸</span>
         <span class="flower-decor flower-top-right">🌺</span>
@@ -621,39 +705,39 @@
                 So yeah Winnie, i hope you read this in my voice 
 
 I had planned to write some generic love ass poem but nahhhh
-The way we started up is crazy, t’was definitely fate.
+The way we started up is crazy, t'was definitely fate.
 I still remember it all, shoutout to Melody for the indirect assist i guess.
-I really can’t classify those things i’ve had in the past with what we have rn.
-There’s just something about you–I really can’t explain.
-The beginning days were cute, never would either of us have thought that this was how it’ll turn out, Mehn my writing is your organized 
+I really can't classify those things i've had in the past with what we have rn.
+There's just something about you–I really can't explain.
+The beginning days were cute, never would either of us have thought that this was how it'll turn out, Mehn my writing is your organized 
 
-Miss Vampire, I’m seriously confused on how to write this, a part of me wants something really cute and poetic, one part wants to write like this another wants to literally write everything that has happened.
+Miss Vampire, I'm seriously confused on how to write this, a part of me wants something really cute and poetic, one part wants to write like this another wants to literally write everything that has happened.
 
-We’ve really come far mehn, thanks to you though😅.
-You’ve been an amazing human to me because this surpasses the usual romantic partner shi. My pretty petite light skinned girlfriend. I love you so much 
-Thank you for choosing me over and over again, Thank you for the multiple chances😭🙏🏾, This has to be God’s work, this is gon’ sound cheeky but i be looking up to our marriage.
+We've really come far mehn, thanks to you though😅.
+You've been an amazing human to me because this surpasses the usual romantic partner shi. My pretty petite light skinned girlfriend. I love you so much 
+Thank you for choosing me over and over again, Thank you for the multiple chances😭🙏🏾, This has to be God's work, this is gon' sound cheeky but i be looking up to our marriage.
 
-I know I’ve been a douche bag, I haven’t been the best lad out there but fr Winnie, You’re for sure amongst the best things that have ever happened to me. Every single experience with you has been memorable, pretty sad that all my good character development had to be at the expense of you but it just shows how much impact you’ve had in me.
+I know I've been a douche bag, I haven't been the best lad out there but fr Winnie, You're for sure amongst the best things that have ever happened to me. Every single experience with you has been memorable, pretty sad that all my good character development had to be at the expense of you but it just shows how much impact you've had in me.
 
 This has to be the most any individual other than my family has ever done.
-You literally just told me to leave your spotify acct🌚, I really love sharing this acct with you. I smile anytime I remember how you occasionally paused songs whenever i was listening, you’re so cute Winnie.
+You literally just told me to leave your spotify acct🌚, I really love sharing this acct with you. I smile anytime I remember how you occasionally paused songs whenever i was listening, you're so cute Winnie.
 Even that game, I actually liked it. 
 I might be the clingy one🫠
 
 Back to business, yeah
-I could say I love everything about you but you already know that, If you don’t, I love everything bout you Winnie.
+I could say I love everything about you but you already know that, If you don't, I love everything bout you Winnie.
 Wrapping up…
 Rowland Ayebapreye Winnie, Thank you.
-You sef don really see shege for my side, I’m sorry about that.
+You sef don really see shege for my side, I'm sorry about that.
 I thank you Winnie for choosing me, really is an honour😭
 Yup, so yeah 
 This is practically like 2 years of dating 🫠
 
-Remember that day, i was shy af when i saw you, i turned numb. I still remember that kiss. All that was missing that day were moonlight and stars cause I already had God’s Perfect being in my arms
+Remember that day, i was shy af when i saw you, i turned numb. I still remember that kiss. All that was missing that day were moonlight and stars cause I already had God's Perfect being in my arms
 
 Imma stick to keeping it simple, dunno if you would have preferred otherwise 
 Henceforth i shall prove it and say it too.
-You’ve done your fair part, it is my turn
+You've done your fair part, it is my turn
 
 My pretty light skinned babe
 I love you my princess❤️
@@ -676,6 +760,31 @@ Thank you (idek feel like re-writing)
         let score = 0;
         const totalQuestions = 8;
         let lovePopupAnswered = false;
+        let isPlaying = false;
+
+        // Music toggle function
+        function toggleMusic() {
+            const music = document.getElementById('backgroundMusic');
+            const musicPlayer = document.getElementById('musicPlayer');
+            const musicIcon = document.getElementById('musicIcon');
+            const musicTooltip = document.getElementById('musicTooltip');
+
+            if (isPlaying) {
+                music.pause();
+                musicPlayer.classList.remove('playing');
+                musicIcon.textContent = '🎵';
+                musicTooltip.textContent = 'Play Music';
+                isPlaying = false;
+            } else {
+                music.play().catch(e => {
+                    console.log('Playback failed:', e);
+                });
+                musicPlayer.classList.add('playing');
+                musicIcon.textContent = '🎶';
+                musicTooltip.textContent = 'Pause Music';
+                isPlaying = true;
+            }
+        }
 
         // Create falling hearts
         function createPetals() {
@@ -812,4 +921,3 @@ Thank you (idek feel like re-writing)
 </body>
 
 </html>
-
